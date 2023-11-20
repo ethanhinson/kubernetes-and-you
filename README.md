@@ -29,7 +29,8 @@ bash ./bin/5.deploy-k8s.yaml
 
 ### Deploying the apps
 
-Steps 5 and 6 represent the deployment steps of deploying containers into the cluster. You can repeat these steps each time you make a change to the code.
+Steps 4 and 5 represent the steps of deploying containers into the cluster. You can repeat these steps each time you make a change to the code.
+The workflow is as follows:
 
 ```
 +--------------+       +------------------+       +------------------+       +------------------+
