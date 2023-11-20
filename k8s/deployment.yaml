@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weather-deployment
+  name: weather
   labels:
     app: weather
 spec:
@@ -16,15 +16,15 @@ spec:
     spec:
       containers:
       - name: weather
-        image: weather-test:latest
-        imagePullPolicy: Never
+        image: localhost:5001/weather-app:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dice-deployment
+  name: dice
   labels:
     app: dice
 spec:
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: dice
-        image: dice-test:latest
-        imagePullPolicy: Never
+        image: localhost:5001/dice-app:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080

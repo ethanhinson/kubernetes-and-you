@@ -1,6 +1,6 @@
 #!/bin/bash
-
-NAMESPACE="your_app"
+# Install a new namespace, deployment, service, and ingress
+NAMESPACE="your-app"
 
 if kubectl get namespace "$NAMESPACE" > /dev/null 2>&1; then
     echo "Namespace '$NAMESPACE' already exists."

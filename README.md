@@ -17,16 +17,14 @@ bash ./bin/1.install-kind.sh
 bash ./bin/2.install-helm.sh
 # This script installs ingress-nginx
 bash ./bin/3.install-ingress-nginx.sh
-# This script runs the registry on port 5000
-bash ./bin/4.run-registry.sh
 # This script builds and pushes the images to the registry
 # You'd repeat this step and the following step
 # each time you make a change to the code
-bash ./bin/5.build-push.sh
+bash ./bin/4.build-push.sh
 # This script deploys the apps in the cluster
 # you run this script when you want to roll
 # out changes.
-bash ./bin/6.deploy-k8s.yaml
+bash ./bin/5.deploy-k8s.yaml
 ```
 
 ### Deploying the apps
