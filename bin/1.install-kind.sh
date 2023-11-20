@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://kind.sigs.k8s.io/docs/user/quick-start/
 go install sigs.k8s.io/kind@v0.20.0
 
 # Make sure to include your Go bin directory in your PATH
