@@ -20,14 +20,8 @@ if [ "$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true
     registry:2
 fi
 
-# 2. Create kind cluster with containerd registry config dir enabled
-# TODO: kind will eventually enable this by default and this patch will
-# be unnecessary.
-#
-# See:
-# https://github.com/kubernetes-sigs/kind/issues/2875
-# https://github.com/containerd/containerd/blob/main/docs/cri/config.md#registry-configuration
-# See: https://github.com/containerd/containerd/blob/main/docs/hosts.md
+# 2. Create kind cluster with containerd registry config dir enabled.
+# With multiple nodes and mapping the network to the host machine.
 cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
