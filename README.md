@@ -2,6 +2,13 @@
 This is a simple Kind cluster setup for local development. It is based on the [official documentation](https://kind.sigs.k8s.io/docs/user/quick-start/).
 ## Prerequisites
 You should have installed kubectl, Docker, and golang 1.20.
+
+### Without installing Go
+
+Go is only used to install `kind` in a platform-agnostic way the scripts. If you would like to skip this prerequisite, you can install `kind` manually by following the instructions [here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
+
+If you manually install `kind` you still must run the `1.install-kind.sh` script to create the cluster.
+
 ## Scenario
 Imagine you are working an organization with multiple teams. Each team uses its own language. But since we are working in a services oriented environment. It is important that our apps be able to communicate with each other.
 
@@ -41,13 +48,13 @@ We'll create 2 separate apps and create ingress, load balancing, and horizontal 
 | +-------------+ |         | +-------------+ |
 | | Pod 2       | |         | | Pod 2       | |
 | | Container 1 | |         | | Container 1 | |
+| +-------------+ |         | +-------------+ |
 | +-------------+ |         +-----------------+
 | +-------------+ |         
 | | Pod 3       | |         
 | | Container 1 | |         
 | +-------------+ |         
 +-----------------+         
-
 ```
 
 ## Setup

@@ -2,6 +2,8 @@
 # Install a new namespace, deployment, service, and ingress
 NAMESPACE="your-app"
 
+kubectl config set-context kind-kind
+
 if kubectl get namespace "$NAMESPACE" > /dev/null 2>&1; then
     echo "Namespace '$NAMESPACE' already exists."
 else

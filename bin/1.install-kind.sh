@@ -1,9 +1,12 @@
 #!/bin/bash
 # https://kind.sigs.k8s.io/docs/user/quick-start/
-go install sigs.k8s.io/kind@v0.20.0
-
-# Make sure to include your Go bin directory in your PATH
-export PATH="$PATH:$(go env GOPATH)/bin"
+if command -v "kind" >/dev/null 2>&1; then
+  echo "The command 'kind' already exists on the system. Skipping install..."
+else
+  go install sigs.k8s.io/kind@v0.20.0
+  # Make sure to include your Go bin directory in your PATH
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 
 #!/bin/sh
 set -o errexit
