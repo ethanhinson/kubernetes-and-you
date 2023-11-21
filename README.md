@@ -12,7 +12,7 @@ If you manually install `kind` you still must run the `1.install-kind.sh` script
 Imagine you are working an organization with multiple teams. Each team uses its own language. We'd like to have a consistent way to add services to our products, regardless of the language used. We'd also like to have a consistent way to deploy our services across teams.
 
 ## What we'll build
-In the `./apps` folder you will find two different services, written in two different languages. Each service has its own Dockerfile to build the image.
+In the `./apps` folder you will find three different services, written in three different languages. Each service has its own Dockerfile to build the image.
 
 ### Cluster topology
 We have a 3 node cluster. 1 node is dedicated to running the control plane, and we'll have worker nodes to run our apps.
