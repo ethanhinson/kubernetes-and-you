@@ -16,7 +16,39 @@ In the `./apps` folder you will find two different services, written in two diff
 
 ## What we'll build
 
+### Cluster topology
+
+We have a 3 node cluster. 1 node is dedicated to running the control plane, and we'll have worker nodes to run our apps.
+
+```
++---------------------+
+| Kubernetes Cluster  |
++---------------------+
+|                     |
+| +-----------------+ |
+| | Control Plane   | |
+| | Node            | |
+| +-----------------+ |
+|                     |
+| +-----------------+ |       +-----------------+
+| | Worker Node 1   | | <---- | Deployments     |
+| +-----------------+ |       +-----------------+
+|                     |       
+| +-----------------+ |       +-----------------+
+| | Worker Node 2   | | <---- | Deployments     |
+| +-----------------+ |       +-----------------+
+|                     |
++---------------------+
+```
+
+### Application topology
+
 We'll create 2 separate apps and create ingress, load balancing, and horizontal scaling. The following diagram depicts the architecture of the system we'll build.
+
+#### Keep in mind
+
+- That the apps are running in the same namespace, but they are completely isolated from each other.
+- Even though the Pods are part of one deployment. The containers within the pod could be running on either worker node
 
 ```
                +-----------------+
