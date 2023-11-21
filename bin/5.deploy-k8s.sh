@@ -17,6 +17,7 @@ else
     fi
 fi
 
+kubectl apply -f ./k8s/configmap.yaml -n $NAMESPACE
 kubectl apply -f ./k8s/deployment.yaml -n $NAMESPACE
 kubectl apply -f ./k8s/service.yaml -n $NAMESPACE
 kubectl apply -f ./k8s/ingress.yaml -n $NAMESPACE
@@ -24,3 +25,4 @@ kubectl apply -f ./k8s/ingress.yaml -n $NAMESPACE
 kubectl rollout restart deployment weather -n $NAMESPACE
 kubectl rollout restart deployment dice -n $NAMESPACE
 kubectl rollout restart deployment pod-metadata -n $NAMESPACE
+kubectl rollout restart deployment dogs -n $NAMESPACE

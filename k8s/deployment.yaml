@@ -71,3 +71,53 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dogs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dogs
+  template:
+    metadata:
+      labels:
+        app: dogs
+    spec:
+      initContainers:
+        - name: init-php
+          image: localhost:5001/dogs-app:latest
+          command: [ "/bin/sh", "-c" ]
+          args: ["mkdir -p /shared && cp -r /var/www/* /shared && chown -R www-data:www-data /shared/html && ls -la /shared/html"]
+          volumeMounts:
+            - name: shared-files
+              mountPath: /shared
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: shared-files
+              mountPath: /usr/share/nginx/html
+              subPath: html
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+        - name: php-fpm
+          image: localhost:5001/dogs-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - name: shared-files
+              mountPath: /var/www/html
+              subPath: html
+      volumes:
+        - name: shared-files
+          emptyDir: {}
+
+        - name: nginx-config
+          configMap:
+            name: nginx-config

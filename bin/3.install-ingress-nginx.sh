@@ -1,6 +1,5 @@
 #!/bin/bash
 # https://kubernetes.github.io/ingress-nginx/deploy/
-
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update ingress-nginx
 helm install --kube-context kind-kind -n ingress-nginx --create-namespace \
