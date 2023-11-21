@@ -4,8 +4,7 @@ This is a simple Kind cluster setup for local development. It is based on the [o
 You should have installed kubectl, Docker, and golang 1.20.
 
 ### Without installing Go
-
-Go is only used to install `kind` in a platform-agnostic way the scripts. If you would like to skip this prerequisite, you can install `kind` manually by following the instructions [here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
+Go is only used to install `kind` in a platform-agnostic way. If you would like to skip this prerequisite, you can install `kind` manually by following the instructions [here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation).
 
 If you manually install `kind` you still must run the `1.install-kind.sh` script to create the cluster.
 
@@ -17,7 +16,6 @@ In the `./apps` folder you will find two different services, written in two diff
 ## What we'll build
 
 ### Cluster topology
-
 We have a 3 node cluster. 1 node is dedicated to running the control plane, and we'll have worker nodes to run our apps.
 
 ```
@@ -42,11 +40,9 @@ We have a 3 node cluster. 1 node is dedicated to running the control plane, and 
 ```
 
 ### Application topology
-
 We'll create 2 separate apps and create ingress, load balancing, and horizontal scaling. The following diagram depicts the architecture of the system we'll build.
 
 #### Keep in mind
-
 - That the apps are running in the same namespace, but they are completely isolated from each other.
 - Even though the Pods are part of one deployment. The containers within the pod could be running on either worker node
 
