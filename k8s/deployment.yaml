@@ -43,3 +43,31 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-metadata
+  labels:
+    app: pod-metadata
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: pod-metadata
+  template:
+    metadata:
+      labels:
+        app: pod-metadata
+    spec:
+      containers:
+      - name: pod-metadata
+        image: localhost:5001/pod-metadata-app:latest
+        env:
+          - name: K8S_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

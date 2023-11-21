@@ -9,11 +9,10 @@ Go is only used to install `kind` in a platform-agnostic way. If you would like 
 If you manually install `kind` you still must run the `1.install-kind.sh` script to create the cluster.
 
 ## Scenario
-Imagine you are working an organization with multiple teams. Each team uses its own language. But since we are working in a services oriented environment. It is important that our apps be able to communicate with each other.
-
-In the `./apps` folder you will find two different services, written in two different languages. Each service has its own Dockerfile to build the image.
+Imagine you are working an organization with multiple teams. Each team uses its own language. We'd like to have a consistent way to add services to our products, regardless of the language used. We'd also like to have a consistent way to deploy our services across teams.
 
 ## What we'll build
+In the `./apps` folder you will find two different services, written in two different languages. Each service has its own Dockerfile to build the image.
 
 ### Cluster topology
 We have a 3 node cluster. 1 node is dedicated to running the control plane, and we'll have worker nodes to run our apps.
@@ -85,7 +84,7 @@ We'll create 2 separate apps and create ingress, load balancing, and horizontal 
 +-----------------+         
 ```
 
-## Setup[office.yaml](..%2F..%2FDownloads%2Foffice.yaml)
+## Setup
 To set up the example run the bash commands in `./bin` in the specified order.
 
 ```bash
