@@ -85,7 +85,7 @@ We'll create 2 separate apps and create ingress, load balancing, and horizontal 
 +-----------------+         
 ```
 
-## Setup
+## Setup[office.yaml](..%2F..%2FDownloads%2Foffice.yaml)
 To set up the example run the bash commands in `./bin` in the specified order.
 
 ```bash
@@ -127,9 +127,6 @@ The workflow is as follows:
 To test the apps you can use the following commands:
 
 ```bash
-# Port forward to the ingress-nginx service running in the cluster
-kubectl port-forward svc/ingress-nginx-controller 8080:80 -n ingress-nginx
-
 # Note the hostnames in the ingress.yaml file weather.test and dice.test respectively
 # Add them to your hosts file in /etc/hosts
 echo "127.0.0.1 weather.test" | sudo tee -a /etc/hosts > /dev/null
