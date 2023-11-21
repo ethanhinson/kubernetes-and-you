@@ -39,44 +39,44 @@ We have a 3 node cluster. 1 node is dedicated to running the control plane, and 
 ```
 
 ### Application topology
-We'll create 2 separate apps and create ingress, load balancing, and horizontal scaling. The following diagram depicts the architecture of the system we'll build.
+We'll create three separate apps and create ingress, load balancing, and horizontal scaling. The next diagram depicts the architecture of the system we'll build.
 
 #### Keep in mind
 - That the apps are running in the same namespace, but they are completely isolated from each other.
 - Even though the Pods are part of one deployment. The containers within the pod could be running on either worker node
 
 ```
-               +-----------------+
-               |                 |
-               | Ingress         |
-               | Controller      |
-               |                 |
-               +--------+--------+
-                        |
-         +--------------+-------------+
-         |                            |
-+--------v--------+         +---------v-------+
-|                 |         |                 |
-| Service Ingress |         | Service Ingress |
-| "weather"       |         | "dice"          |
-|                 |         |                 |
-+--------+--------+         +---------+-------+
-         |                            |
-         |                            |
-+--------v--------+         +---------v-------+
-|                 |         |                 |
-| Deployment      |         | Deployment      |
-| "weather-app"   |         | "dice-app"      |
-|                 |         |                 |
-| +-------------+ |         | +-------------+ |
-| | Pod 1       | |         | | Pod 1       | |
-| | Container 1 | |         | | Container 1 | |
-| +-------------+ |         | +-------------+ |
-| +-------------+ |         | +-------------+ |
-| | Pod 2       | |         | | Pod 2       | |
-| | Container 1 | |         | | Container 1 | |
-| +-------------+ |         | +-------------+ |
-| +-------------+ |         +-----------------+
+                             +-----------------+
+                             |                 |
+                             | Ingress         |
+                             | Controller      |
+                             |                 |
+                             +--------+--------+
+                                      |
+         +----------------------------+-----------------------+------POTENTIALLY SERVICE 4....N --->
+         |                            |                       |
++--------v--------+         +---------v-------+      +-----------------+
+|                 |         |                 |      |                 |
+| Service Ingress |         | Service Ingress |      | Service Ingress |
+| "weather"       |         | "dice"          |      | "pod-metadata"  |
+|                 |         |                 |      |                 |
++--------+--------+         +---------+-------+      +--------+--------+
+         |                            |                       |
+         |                            |                       |
++--------v--------+         +---------v-------+      +--------v--------+
+|                 |         |                 |      |                 |
+| Deployment      |         | Deployment      |      | Deployment      |
+| "weather-app"   |         | "dice-app"      |      | "pod-metadata"  |
+|                 |         |                 |      |                 |
+| +-------------+ |         | +-------------+ |      | +-------------+ |
+| | Pod 1       | |         | | Pod 1       | |      | | Pod 1       | |
+| | Container 1 | |         | | Container 1 | |      | | Container 1 | |
+| +-------------+ |         | +-------------+ |      | +-------------+ |
+| +-------------+ |         | +-------------+ |      | +-------------+ |
+| | Pod 2       | |         | | Pod 2       | |      | | Pod 2       | |
+| | Container 1 | |         | | Container 1 | |      | | Container 1 | |
+| +-------------+ |         | +-------------+ |      | +-------------+ |
+| +-------------+ |         +-----------------+      +-----------------+
 | +-------------+ |         
 | | Pod 3       | |         
 | | Container 1 | |         
